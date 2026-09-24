@@ -54,14 +54,15 @@ MySQL Server 8.0
 
 Cliente HTTP (Postman, Insomnia o Thunder Client).
 
+---
 ⚙️ Configuración e Instalación
 1. Clonar el repositorio:
 git clone [https://github.com/The-VincheZo-mp3/Prueba-1-Desarrollo-Cloud-Native-I_001D.git](https://github.com/The-VincheZo-mp3/Prueba-1-Desarrollo-Cloud-Native-I_001D.git)
 cd "Tienda de Video Juegos - Backend"
 
-Configurar la Base de Datos:
+###Configurar la Base de Datos:
 Asegúrate de crear la base de datos en tu servidor local MySQL:
-
+---
 SQL
 CREATE DATABASE tienda_videojuegos;
 Ajustar credenciales de conexión:
@@ -73,19 +74,22 @@ spring.datasource.username=tu_usuario
 spring.datasource.password=tu_contraseña
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
-Compilar y compilar las dependencias:
+Compilar y compilar las dependencias:###
+---
 
 Bash
 mvn clean install
 Iniciar la aplicación:
 
+---
 
 Bash
 mvn spring-boot:run
 La API estará disponible en http://localhost:8080.
 
+---
+###📌 Endpoints Principales
 
-📌 Endpoints Principales
 🎮 Videojuegos (/api/videojuegos)
 GET /api/videojuegos: Obtener todos los videojuegos disponibles.
 GET /api/videojuegos/{id}: Obtener detalle de un videojuego por ID.
@@ -93,25 +97,26 @@ POST /api/videojuegos: Registrar un nuevo videojuego en el inventario.
 PUT /api/videojuegos/{id}: Actualizar la información de un videojuego.
 DELETE /api/videojuegos/{id}: Eliminar un producto.
 
-
-🏷️ Categorías (/api/categorias)
+---
+###🏷️ Categorías (/api/categorias)
 GET /api/categorias: Listar categorías disponibles (Acción, RPG, Aventura, etc.).
-
 POST /api/categorias: Crear una nueva categoría.
 
-
+---
 🧪 Pruebas Unitarias
 Para ejecutar la suite de pruebas unitarias creadas para los servicios y controladores:
 
 Bash
 mvn test
+---
+
 🧑‍💻 Autor
 The-VincheZo-mp3 - Desarrollo Backend y Cloud Native
+Turquitos - Desarollo Frontend y Cloud Native
 
 
 ---
-
-### Pasos para guardar el nuevo README y enviarlo a GitHub:
+Pasos para guardar el nuevo README y enviarlo a GitHub:
 
 1. Reemplaza el texto en tu archivo `README.md`.
 2. Ejecuta este comando en tu **Git Bash**:
