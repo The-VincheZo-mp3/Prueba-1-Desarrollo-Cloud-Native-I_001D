@@ -79,26 +79,26 @@ Bash
 mvn clean install
 Iniciar la aplicación:
 
+
 Bash
 mvn spring-boot:run
 La API estará disponible en http://localhost:8080.
 
+
 📌 Endpoints Principales
 🎮 Videojuegos (/api/videojuegos)
 GET /api/videojuegos: Obtener todos los videojuegos disponibles.
-
 GET /api/videojuegos/{id}: Obtener detalle de un videojuego por ID.
-
 POST /api/videojuegos: Registrar un nuevo videojuego en el inventario.
-
 PUT /api/videojuegos/{id}: Actualizar la información de un videojuego.
-
 DELETE /api/videojuegos/{id}: Eliminar un producto.
+
 
 🏷️ Categorías (/api/categorias)
 GET /api/categorias: Listar categorías disponibles (Acción, RPG, Aventura, etc.).
 
 POST /api/categorias: Crear una nueva categoría.
+
 
 🧪 Pruebas Unitarias
 Para ejecutar la suite de pruebas unitarias creadas para los servicios y controladores:
@@ -116,6 +116,6 @@ The-VincheZo-mp3 - Desarrollo Backend y Cloud Native
 1. Reemplaza el texto en tu archivo `README.md`.
 2. Ejecuta este comando en tu **Git Bash**:
 
-```bash
+bash
 git add README.md && git commit -m "docs: actualizacion completa de documentacion en README.md" && git push origin main
-```
+
