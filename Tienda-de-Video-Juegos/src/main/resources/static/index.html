@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelVault - Tienda de Videojuegos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-40 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <i class="fa-solid fa-gamepad text-purple-500 text-2xl"></i>
+            <span class="text-2xl font-black tracking-wider bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">PIXELVAULT</span>
+        </div>
+
+        <div class="flex items-center space-x-4">
+            <div class="relative w-64 md:w-80">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input id="search-input" type="text" placeholder="Buscar juego o desarrollador..." class="w-full pl-10 pr-4 py-2 bg-slate-800/80 border border-slate-700 rounded-full text-sm focus:outline-none focus:border-purple-500 transition">
+            </div>
+
+            <button id="btn-open-modal" class="bg-purple-600 hover:bg-purple-500 text-white font-medium px-4 py-2 rounded-xl text-sm flex items-center gap-2 transition shadow-lg shadow-purple-600/30">
+                <i class="fa-solid fa-plus"></i>
+                <span class="hidden sm:inline">Agregar Juego</span>
+            </button>
+
+            <button id="btn-open-cart" class="relative bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 p-2.5 rounded-xl transition">
+                <i class="fa-solid fa-cart-shopping text-lg"></i>
+                <span id="cart-count" class="absolute -top-1.5 -right-1.5 bg-pink-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="text-center py-12 px-4 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950">
+        <h1 class="text-4xl md:text-5xl font-black text-white mb-3">Tu Próxima <span class="bg-gradient-to-r from-purple-400 via-pink-500 to-purple-400 bg-clip-text text-transparent">Aventura</span> Empieza Aquí</h1>
+        <p class="text-slate-400 max-w-xl mx-auto text-sm md:text-base">Explora nuestro catálogo exclusivo de títulos digitales e independientes a los mejores precios.</p>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <main class="flex-1 max-w-7xl mx-auto px-6 pb-16 w-full">
+        <div id="contenedor-juegos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+    </main>
+
+    <!-- MODAL CREAR JUEGO -->
+    <div id="modal-juego" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center hidden">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-lg p-6 shadow-2xl relative mx-4">
+            <button id="btn-close-modal" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 class="text-xl font-bold text-white mb-4"><i class="fa-solid fa-gamepad text-purple-400 mr-2"></i>Agregar Nuevo Juego</h2>
+            
+            <form id="form-juego" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">Título</label>
+                    <input type="text" id="titulo" required class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-sm focus:outline-none focus:border-purple-500">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Categoría</label>
+                        <input type="text" id="categoria" placeholder="Acción, RPG, etc." required class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-sm focus:outline-none focus:border-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Creador / Desarrollador</label>
+                        <input type="text" id="creador" placeholder="Ej: Nintendo" required class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-sm focus:outline-none focus:border-purple-500">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Precio ($ CLP)</label>
+                        <input type="number" id="precio" required class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-sm focus:outline-none focus:border-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-1">Descuento (%)</label>
+                        <input type="number" id="descuento" value="0" min="0" max="100" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-sm focus:outline-none focus:border-purple-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">URL de la Imagen</label>
+                    <input type="url" id="imagenUrl" placeholder="https://..." required class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-sm focus:outline-none focus:border-purple-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">Descripción</label>
+                    <textarea id="descripcion" rows="3" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-sm focus:outline-none focus:border-purple-500"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2.5 rounded-lg transition shadow-lg shadow-purple-600/30">Guardar en Catálogo</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- DRAWER CARRITO -->
+    <div id="cart-drawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-slate-900 border-l border-slate-800 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-6 border-b border-slate-800 flex items-center justify-between">
+            <h2 class="text-xl font-bold text-white"><i class="fa-solid fa-cart-shopping text-purple-400 mr-2"></i>Carrito de Compras</h2>
+            <button id="btn-close-cart" class="text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        
+        <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
+
+        <div class="p-6 border-t border-slate-800 bg-slate-950/50 space-y-4">
+            <div class="flex justify-between items-center text-lg font-bold">
+                <span class="text-slate-300">Total CLP:</span>
+                <span id="cart-total" class="text-emerald-400">$0 CLP</span>
+            </div>
+            <button id="btn-checkout" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-600/30">
+                Finalizar Compra
+            </button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
