@@ -30,12 +30,17 @@ public class VideojuegoService {
         return videojuegoRepository.save(videojuego);
     }
 
+    // Actualiza TODOS los campos editables (antes solo copiaba titulo, genero, precio y stock)
     public Videojuego actualizar(Long id, Videojuego detalles) {
         return videojuegoRepository.findById(id).map(videojuego -> {
             videojuego.setTitulo(detalles.getTitulo());
             videojuego.setGenero(detalles.getGenero());
+            videojuego.setDesarrollador(detalles.getDesarrollador());
             videojuego.setPrecio(detalles.getPrecio());
+            videojuego.setDescuento(detalles.getDescuento());
             videojuego.setStock(detalles.getStock());
+            videojuego.setDescripcion(detalles.getDescripcion());
+            videojuego.setImagenUrl(detalles.getImagenUrl());
             return videojuegoRepository.save(videojuego);
         }).orElseThrow(() -> new RuntimeException("Videojuego no encontrado con id: " + id));
     }
