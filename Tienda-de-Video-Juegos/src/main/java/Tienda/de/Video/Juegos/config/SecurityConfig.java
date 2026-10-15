@@ -134,6 +134,10 @@ public class SecurityConfig {
                 .requestMatchers(antMatcher(HttpMethod.POST, "/api/videojuegos/**")).hasRole("PERSONAL")
                 .requestMatchers(antMatcher(HttpMethod.PUT, "/api/videojuegos/**")).hasRole("PERSONAL")
                 .requestMatchers(antMatcher(HttpMethod.DELETE, "/api/videojuegos/**")).hasRole("PERSONAL")
+                // Comprar (manda la orden a SQS): solo clientes
+                .requestMatchers(antMatcher(HttpMethod.POST, "/api/ordenes/**")).hasRole("CLIENTE")
+                // Estado de las colas: solo personal
+                .requestMatchers(antMatcher(HttpMethod.GET, "/api/mensajeria/**")).hasRole("PERSONAL")
                 .anyRequest().authenticated()
             )
             .oauth2ResourceServer(oauth2 -> oauth2.authenticationManagerResolver(resolver));

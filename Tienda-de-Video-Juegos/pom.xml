@@ -18,6 +18,19 @@
         <java.version>17</java.version>
     </properties>
 
+    <!-- Versiones de Spring Cloud AWS (SQS y SNS) compatibles con Spring Boot 3.2 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.awspring.cloud</groupId>
+                <artifactId>spring-cloud-aws-dependencies</artifactId>
+                <version>3.1.1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- Web (Controladores REST y Servidor Tomcat) -->
         <dependency>
@@ -53,6 +66,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+        </dependency>
+
+        <!-- Mensajeria: Amazon SQS (colas) y Amazon SNS (notificaciones) -->
+        <dependency>
+            <groupId>io.awspring.cloud</groupId>
+            <artifactId>spring-cloud-aws-starter-sqs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.awspring.cloud</groupId>
+            <artifactId>spring-cloud-aws-starter-sns</artifactId>
         </dependency>
 
         <!-- Dependencia principal de pruebas -->
